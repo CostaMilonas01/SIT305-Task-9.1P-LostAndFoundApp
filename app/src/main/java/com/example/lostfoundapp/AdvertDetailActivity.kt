@@ -2,7 +2,11 @@ package com.example.lostfoundapp
 
 import android.net.Uri
 import android.os.Bundle
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class AdvertDetailActivity : AppCompatActivity() {
@@ -14,6 +18,7 @@ class AdvertDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         dbHelper = DatabaseHelper(this)
+
         advertId = intent.getIntExtra("advertId", -1)
 
         val advert = dbHelper.getAdvertById(advertId)
@@ -25,14 +30,16 @@ class AdvertDetailActivity : AppCompatActivity() {
         if (advert == null) {
             val errorText = TextView(this)
             errorText.text = "Advert not found"
+
             layout.addView(errorText)
+
             setContentView(layout)
+
             return
         }
 
         val imageView = ImageView(this)
         imageView.minimumHeight = 400
-
 
         try {
             if (advert.imageUri.isNotEmpty()) {
@@ -43,6 +50,7 @@ class AdvertDetailActivity : AppCompatActivity() {
         }
 
         val detailsText = TextView(this)
+
         detailsText.text = """
             Type: ${advert.type}
             Category: ${advert.category}
@@ -51,6 +59,8 @@ class AdvertDetailActivity : AppCompatActivity() {
             Description: ${advert.description}
             Date: ${advert.date}
             Location: ${advert.location}
+            Latitude: ${advert.latitude}
+            Longitude: ${advert.longitude}
             Posted: ${advert.timestamp}
         """.trimIndent()
 
