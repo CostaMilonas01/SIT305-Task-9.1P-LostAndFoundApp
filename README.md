@@ -59,8 +59,8 @@ Enable these APIs in Google Cloud Console:
 
 In the project, open the `local.properties` file and add:
 
-```properties
 MAPS_API_KEY=YOUR_GOOGLE_MAPS_API_KEY
+
 Replace YOUR_GOOGLE_MAPS_API_KEY with your real Google Maps API key.
 
 How to Run
